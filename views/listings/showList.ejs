@@ -1,0 +1,104 @@
+<% layout('/layouts/boilerplate') %>
+<script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const lists = <%- JSON.stringify(list) %>;
+</script>
+    <div class="row mt-3">
+        <div class="col-8 offset-3">
+            <h1>
+                <%= list.title %>
+            </h1>
+        </div>
+        <div class="list-card card col-6 offset-3">
+            <img src="<%= list.image.url %>" class="show-img" alt="">
+            <p>
+                Owned by : <%= list.owner.username %>
+            </p>
+            <p>
+                <%= list.description %>
+            </p>
+            <p>₹<%= (typeof list.price==="number" ) ? list.price.toLocaleString("en-IN") : "N/A" %> /night
+            </p>
+            <p>
+                <%= list.location %>
+            </p>
+            <p>
+                <%= list.country %>
+            </p>
+        </div>
+
+        <% if(currUser && currUser._id.equals(list.owner._id)){ %>
+            <div class="btns">
+                <a href="/listings/<%= list._id %>/edit"><button class="btn add-btn btn-dark">Edit</button></a>
+                <form action="/listings/<%= list._id %>?_method=delete" method="post">
+                    <button class="btn btn-dark offset-5">Delete</button>
+                </form>
+            </div>
+            </form>
+            <% } %>
+    </div>
+    <br>
+    <hr>
+    <% if(list.reviews.length ){ %>
+        <h4 class="col-8 offset-3">
+            All Reviews
+        </h4>
+        <br>
+        <div class="row offset-3">
+            <% for(let review of list.reviews){ %>
+                <div class="card col-5 me-5 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Reviewed by: @<%= review.author.username %>
+                        </h5>
+                        <p class="card-text">
+                            <%= review.comment %>
+                        </p>
+                        <p class="starability-result" data-rating="<%=review.ratings %>">
+                            Rated: <%= review.ratings %> stars
+                        </p>
+                        <form action="/listings/<%= list.id %>/review/<%= review.id %>?_method=delete" method="post">
+                            <button class="btn btn-sm btn-dark "> Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <br>
+        <hr>
+        <% } %>
+            <% if(currUser) { %>
+                <div class="col-8 offset-3">
+                    <h4>Leave A Review here</h4>
+                    <form action="/listings/<%= list.id %>/review" method="post" novalidate class="needs-validation">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Ratings</label>
+                            <fieldset class="starability-slot">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="review[ratings]" value="1"
+                                    checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="review[ratings]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[ratings]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[ratings]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[ratings]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[ratings]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <textarea name="review[comment]" id="comment" class="form-control" required></textarea>
+                        </div>
+                        <button class="btn btn-dark add-btn">Submit</button>
+                        <br><br>
+                </div>
+                <hr>
+                <% } %>
+                    <div class="col-8 offset-3 mb-4">
+                        <h3>Where you will be</h3>
+                        <div id="map"></div>
+                    </div>
+                    <script src="/js/maps.js"></script>
