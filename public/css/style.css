@@ -113,7 +113,7 @@ body {
 
 /* map */
 #map {
-    width: 80vh;         /* take full available width */
+    width: 100%;         /* take full available width */
     height: 400px;       /* keep fixed height */
     border-radius: 20px;
 }
@@ -205,7 +205,7 @@ body {
     }
     #map{
         height: 300px !important; 
-        width: 400px !important;
+        width: 100% !important;
     }
 
     .offset-3 {
@@ -231,4 +231,23 @@ body {
     }
 
 
+}
+@media (max-width: 767px) {
+    .navbar {
+        height: auto;  /* Was fixed 5rem */
+        padding: 0.5rem 1rem;
+    }
+    .search-form {
+        margin: 0.5rem 0;
+        width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .search-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 500px;
+    }
 }

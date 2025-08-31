@@ -8,11 +8,12 @@
 
     <!-- Search (always visible, centered on desktop, full-width on mobile) -->
     <% if (currentPath === '/listings') { %>
-      <div class="search-margin">
-        <form class="d-flex flex-grow-1 mx-2 my-2 my-md-0 search-form " style="max-width:600px;">
-          <input class="form-control me-2 search-pad" id="searchInput" type="text" placeholder="Search Destinations" />
+      <div class="search-container d-flex justify-content-center flex-grow-1">
+        <form class="d-flex search-form " >
+          <input class="form-control me-2 search-pad" id="searchInput" type="text" placeholder="Search" />
           <button class="btn btn-danger" type="button">
             <i class="fa-solid fa-magnifying-glass"></i>
+            
           </button>
         </form>
       </div>
