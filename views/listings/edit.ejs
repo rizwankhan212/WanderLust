@@ -1,45 +1,57 @@
 <% layout("/layouts/boilerplate") %>
-<br><br>
+    <br><br>
     <div class="row">
         <div class="col-8 offset-2">
             <h1>Edit Listing </h1>
-            <form action="/listings/<%= list._id %>?_method=put" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+            <form action="/listings/<%= list._id %>?_method=put" method="post" novalidate class="needs-validation"
+                enctype="multipart/form-data">
                 <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" name="listing[title]" value="<%=list.title%>" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">description</label>
-                <textarea name="listing[description]"class="form-control" required><%=list.description%></textarea>
-            </div>
-            <div class="mb-3">
-                <img src="<%= list.image.url %>" width="250px" alt="">
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Image Link</label>
-                <input type="file" class="form-control" name="listing[image]">
-            </div>
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" value="<%=list.title%>" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">description</label>
+                    <textarea name="listing[description]" class="form-control" required><%=list.description%></textarea>
+                </div>
+                <div class="mb-3">
+                    <img src="<%= list.image.url %>" width="250px" alt="">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">upload the image</label>
+                    <input type="file" class="form-control" name="listing[image]">
+                </div>
+                <div class="mb3">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="listing[category]" id="category" class="form-select">
+                        <% const categories=["Trending", "Rooms" , "Iconic cities" , "Mountain cities" , "Farmhouse"
+                            , "castle" , "Aractic" , "Other" ]; categories.forEach(function(cat) { %>
+                            <option value="<%= cat %>" <%=list.category===cat ? "selected" : "" %> >
+                                <%= cat %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" name="listing[price]" value="<%=list.price%>" class="form-control"
+                            required>
 
-            <div class="row">
-                <div class="mb-3 col-md-4">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" name="listing[price]" value="<%=list.price%>"  class="form-control" required>
-        
+                    </div>
+                    <div class="mb-3 col-md-8">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="listing[location]" class="form-control" value="<%=list.location%>"
+                            required>
+                    </div>
                 </div>
-                <div class="mb-3 col-md-8">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" name="listing[location]" class="form-control" value="<%=list.location%>" required>
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+
+                    <input type="text" name="listing[country]" class="form-control" value="<%=list.country%>" required>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Country</label>
-    
-                <input type="text" name="listing[country]" class="form-control" value="<%=list.country%>" required >
-            </div>
-            <br>
-            <button class="btn btn-dark add-btn">Edit</button>
-        </form>
-        <br><br>
+                <br>
+                <button class="btn btn-dark add-btn">Edit</button>
+            </form>
+            <br><br>
         </div>
     </div>
-

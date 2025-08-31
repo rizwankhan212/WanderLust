@@ -26,9 +26,13 @@
         <div><i class="fa-solid fa-tree"></i></div>
         <p class="small">Farmhouse</p>
     </div>
-    <div class="filter Arctic text-center flex-shrink-0">
+    <div class="filter Aractic text-center flex-shrink-0">
         <div><i class="fa-solid fa-igloo"></i></div>
         <p class="small">Aractic</p>
+    </div>
+    <div class="filter other text-center flex-shrink-0">
+        <div><i class="fa-brands fa-ethereum"></i></div>
+        <p class="small">Other</p>
     </div>
     <div class="tax-toggle flex-shrink-0">
         <div class="form-check form-switch">
@@ -46,7 +50,7 @@
             <img src="<%= list.image.url %>" alt="" class="card-img-top">
             <div class="card-body">
               <h6 class="fw-bold mb-1"><%= list.title %></h6>
-              <p class="mb-1">₹<%= list.price.toLocaleString("en-IN") %> /night</p>
+              <p class="mb-1 price">₹<%= list.price.toLocaleString("en-IN") %> /night</p>
               <p class="category" style="display:none;"><%= list.category %></p>
             </div>
           </a>

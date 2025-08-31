@@ -1,6 +1,7 @@
 let taxSwitch = document.getElementById("switchCheckDefault");
         taxSwitch.addEventListener("change", () => {
-            let prices = document.querySelectorAll(".card-text p");
+            let prices = document.querySelectorAll(".price");
+            console.log(prices);
             prices.forEach((price) => {
                 let val = price.innerText;
                 val = val.replace(/[^0-9]/g, '');
