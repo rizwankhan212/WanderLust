@@ -74,6 +74,11 @@ module.exports.update = async (req, res) => {
     if (!req.body.listing) {
         throw new ExpressError(400, "Send Valid Data");
     }
+    let resposne = await geocodingClient.forwardGeocode({
+        query: req.body.listing.location,
+        limit:1
+    })
+        .send();
     let { id } = req.params;
     let list = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { runValidators: true });
     if (req.file && list.image && list.image.filename) {
@@ -85,6 +90,8 @@ module.exports.update = async (req, res) => {
         list.image = { url, filename };
         await list.save();
     }
+    list.geometry = resposne.body.features[0].geometry;
+    await list.save();
     req.flash('success', 'Listing updated');
     // or await Listing.findByIdAndUpdate(id,{...req.body.listing},{runValidators:true});
     res.redirect(`/listings/${id}`);
