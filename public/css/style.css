@@ -85,6 +85,7 @@ body{
     object-fit: cover !important;
 }
 
+
 /* map */
 #map {
     width: 80vh;
@@ -138,3 +139,43 @@ body{
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
   }
+
+@media (max-width: 576px) {
+   .navbar{
+      width: 510px;
+    }
+    .f-info{
+            width: 510px;
+        }
+    .show-img{
+            width: 470px;
+        }
+        .offset-3 {
+            margin-left: 0 !important;
+        }
+        .re{
+            width: 250px !important;
+            margin-left: auto !important;
+
+        }
+        .re-head{
+            margin-left: auto !important;
+        }
+        #map {
+            height: 300px;
+            width: 470px;
+        }
+        .re-box {
+            width: 470px !important;
+        }
+         .filter i {
+            font-size: 18px;
+        }
+        .filter p {
+            font-size: 12px;
+        }
+
+        .sm-details p {
+            width: 470px !important;
+        }
+}

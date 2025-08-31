@@ -9,8 +9,8 @@
                 <%= list.title %>
             </h1>
         </div>
-        <div class="list-card card col-6 offset-3">
-            <img src="<%= list.image.url %>" class="show-img" alt="">
+        <div class="list-card card col-6 offset-3  sm-details">
+            <img src="<%= list.image.url %>" class="show-img mb-5 " alt="">
             <p>
                 Owned by : <%= list.owner.username %>
             </p>
@@ -40,14 +40,14 @@
     <br>
     <hr>
     <% if(list.reviews.length ){ %>
-        <h4 class="col-8 offset-3">
+        <h4 class="col-8 offset-3 re-head">
             All Reviews
         </h4>
         <br>
-        <div class="row offset-3">
+        <div class="row offset-3  ">
             <% for(let review of list.reviews){ %>
-                <div class="card col-5 me-5 mb-3">
-                    <div class="card-body">
+                <div class="card col-4 me-5 mb-3 re  ">
+                    <div class="card-body ">
                         <h5 class="card-title">
                             Reviewed by: @<%= review.author.username %>
                         </h5>
@@ -57,9 +57,11 @@
                         <p class="starability-result" data-rating="<%=review.ratings %>">
                             Rated: <%= review.ratings %> stars
                         </p>
+                        <% if(currUser && currUser._id.equals(review.author._id)){ %>
                         <form action="/listings/<%= list.id %>/review/<%= review.id %>?_method=delete" method="post">
                             <button class="btn btn-sm btn-dark "> Delete</button>
                         </form>
+                    <% } %>
                     </div>
                 </div>
                 <% } %>
@@ -68,7 +70,7 @@
         <hr>
         <% } %>
             <% if(currUser) { %>
-                <div class="col-8 offset-3">
+                <div class="col-8 offset-3 re-box">
                     <h4>Leave A Review here</h4>
                     <form action="/listings/<%= list.id %>/review" method="post" novalidate class="needs-validation">
                         <div class="mb-3">
@@ -97,8 +99,9 @@
                 </div>
                 <hr>
                 <% } %>
-                    <div class="col-8 offset-3 mb-4">
+                    <div class="col-8 offset-3 mb-4 ">
                         <h3>Where you will be</h3>
                         <div id="map"></div>
                     </div>
                     <script src="/js/maps.js"></script>
+
