@@ -28,7 +28,7 @@
     </div>
     <div class="filter Arctic text-center flex-shrink-0">
         <div><i class="fa-solid fa-igloo"></i></div>
-        <p class="small">Arctic</p>
+        <p class="small">Aractic</p>
     </div>
     <div class="tax-toggle flex-shrink-0">
         <div class="form-check form-switch">
@@ -39,47 +39,26 @@
 </div>
 
 <!-- Listings -->
-<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"  id="listingContainer">
     <% for(let list of listings){ %>
-        <div class="col">
-            <div class="card h-100 list-card">
-                <a href="/listings/<%= list.id %>" class="list-link text-decoration-none text-dark">
-                    <img src="<%= list.image.url %>" alt="" 
-                         class="card-img-top" 
-                         style="object-fit: cover; height: 200px;">
-                    <div class="card-body">
-                        <h6 class="fw-bold mb-1"><%= list.title %></h6>
-                        <p class="mb-1">₹<%= (typeof list.price==="number" ) ? list.price.toLocaleString("en-IN") : "N/A" %> /night</p>
-                        <p class="category d-none"><%= list.category %></p>
-                    </div>
-                </a>
+        <div class="card h-100 list-card col">
+          <a href="/listings/<%= list.id %>" class="list-link text-decoration-none text-dark">
+            <img src="<%= list.image.url %>" alt="" class="card-img-top">
+            <div class="card-body">
+              <h6 class="fw-bold mb-1"><%= list.title %></h6>
+              <p class="mb-1">₹<%= list.price.toLocaleString("en-IN") %> /night</p>
+              <p class="category" style="display:none;"><%= list.category %></p>
             </div>
+          </a>
         </div>
     <% } %>
-</div>
+  </div>
+
 
 <div id="noResults" style="display:none; text-align:center; margin-top:20px;">
-    <h3>Not Now Not Available</h3>
+    <h3>Not Found Anything related to that</h3>
 </div>
 
 <script src="/js/tax.js"></script>
 <script src="/js/filter.js"></script>
 
-<style>
-    /* Horizontal scroll for filters */
-    .filters-container {
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-    }
-    .filters-container::-webkit-scrollbar {
-        height: 6px;
-    }
-    .filters-container::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 4px;
-    }
-
-    /* Smaller icons on mobile */
-
-</style>

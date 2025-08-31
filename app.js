@@ -89,9 +89,12 @@ app.use((req, res, next) => {
     res.locals.currentPath = req.path; // ye current URL path dega
     next();
 });
-// app.get("/",(req,res) =>{
-//     res.render("listings/index");
-// });
+
+
+app.get("/",(req,res) =>{
+    res.render("listings/index");
+});
+
 
 
 // listings

@@ -8,12 +8,14 @@
 
     <!-- Search (always visible, centered on desktop, full-width on mobile) -->
     <% if (currentPath === '/listings') { %>
-      <form class="d-flex flex-grow-1 mx-2 my-2 my-md-0" role="search" style="max-width:600px;">
-        <input class="form-control me-2" id="searchInput" type="text" placeholder="Search Destinations" />
-        <button class="btn btn-danger" type="button">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
+      <div class="search-margin">
+        <form class="d-flex flex-grow-1 mx-2 my-2 my-md-0 search-form " style="max-width:600px;">
+          <input class="form-control me-2 search-pad" id="searchInput" type="text" placeholder="Search Destinations" />
+          <button class="btn btn-danger" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
     <% } %>
 
     <!-- Desktop nav (md and up) -->
@@ -45,7 +47,7 @@
   </div>
   <div class="offcanvas-body">
     <nav class="nav flex-column">
-      <a class="nav-link" href="/listings/new">List your Home</a>
+      <a class="nav-link" href="/listings/new">List your Property</a>
       <% if(!currUser){ %>
         <a class="nav-link" href="/signup"><b>Signup</b></a>
         <a class="nav-link" href="/login"><b>Login</b></a>

@@ -1,28 +1,24 @@
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
-   const noResults = document.getElementById("noResults");
-    const cards = document.querySelectorAll(".card");
+  const noResults = document.getElementById("noResults");
+  const cards = document.querySelectorAll(".list-card"); // ✅ only listing cards
 
-   
-   searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        console.log("Search query:", query); // Debugging line
-        let matchFound = false;
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    let matchFound = false;
 
-        cards.forEach(card => {
-           const cardTitle = card.querySelector(".card-text b").innerText.toLowerCase();
-            if (cardTitle.includes(query)) {
-                card.style.display = "block";
-                matchFound = true;
-            } else {
-                card.style.display = "none";
-            }
-        });
+    cards.forEach(card => {
+      const cardTitle = card.querySelector("h6").innerText.toLowerCase();
+      const cardCategory = card.querySelector(".category").innerText.toLowerCase();
 
-        if (!matchFound) {
-            noResults.style.display = "block";
-        } else {
-            noResults.style.display = "none";
-        }
+      if (cardTitle.includes(query) || cardCategory.includes(query)) {
+        card.parentElement.style.display = "block"; // ✅ show the column wrapper
+        matchFound = true;
+      } else {
+        card.parentElement.style.display = "none";  // ✅ hide the column wrapper
+      }
     });
+
+    noResults.style.display = matchFound ? "none" : "block";
   });
+});

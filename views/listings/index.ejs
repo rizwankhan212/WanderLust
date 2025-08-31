@@ -1,0 +1,42 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container mt-5">
+  <!-- Hero Section -->
+  <section class="text-center py-5">
+    <h1 class="display-4 fw-bold">Find Your Perfect Stay with <span style="color:#ff5a5f">WanderLust</span></h1>
+    <p class="lead text-muted mt-3">
+      Rent a house, book your next trip, or list your property with ease.
+    </p>
+    <div class="mt-4">
+      <a href="/listings" class="btn btn-lg btn-primary px-4 me-2">Explore Homes</a>
+      <a href="/listings/new" class="btn btn-lg btn-outline-dark px-4">List Your Property</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="row text-center mt-5">
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-home fa-3x mb-3 text-primary"></i>
+      <h5 class="fw-bold">Comfortable Homes</h5>
+      <p class="text-muted">Choose from a wide variety of properties suited to your lifestyle and budget.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-map-marked-alt fa-3x mb-3 text-success"></i>
+      <h5 class="fw-bold">Great Locations</h5>
+      <p class="text-muted">Stay close to what matters most with properties across top destinations.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-handshake fa-3x mb-3 text-warning"></i>
+      <h5 class="fw-bold">Trusted Hosts</h5>
+      <p class="text-muted">Rent with confidence knowing all hosts are verified and reliable.</p>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+   <% if(!currUser) { %>
+  <section class="text-center my-5 py-5 bg-light rounded">
+    <h2 class="fw-bold">Ready to start your journey?</h2>
+    <p class="text-muted">Sign up today and discover your next home away from home.</p>
+    <a href="/signup" class="btn btn-lg btn-danger px-4">Get Started</a>
+  </section>
+   <% } %>
+</div>
